@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!--compatability-->
+{%block head%}{%endblock%}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+  <!--Font Awesome for Icons-->
+    <script src="https://use.fontawesome.com/bab24acec7.js"></script>
+    <style>
+        #recipieHead{
+
+           position: absolute;
+            top:15px;
+        }
+
+        .jumbotron{
+
+            background-image: url(static/images/nature/sky2.jpg);
+            background-size: 100% 100%;
+
+        }
+
+        .vertical-center{
+
+            text-align: center;
+        }
+        #headShot{
+
+            width:250px;
+          }
+
+    </style>
+      <title> {% block title%} Michelson {% endblock %} </title>
+
+    </head>
+
+
+<body>
+<!--facebook login thingie - javascript-->
+
+
+<!--NavBar + Collapse Content-->
+<div class="collapse" id="profilePic">
+    <div class="bg-inverse p-a-1">
+
+        <h4>Aaron Michelson</h4>
+        <div class="row" >
+            <img class="col-sm-6" id="headShot" src="static/images/wedding%20shot.JPG">
+            <span >The Author lives in Bronx,NY with his wife. He is just psyched to be afforded the opportunity to be getting his PhD at Columbia University.
+            Aaron holds a Master's Degree in Material Science and Engineering from Stanford University</span>
+          </br></br>
+    
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid">
+ <div class='row'>
+
+     <button class="navbar-toggler col-sm-1" type="button" data-toggle="collapse"  data-target="#profilePic">
+      &#9776; </button>
+
+      <ul class="nav nav-pills col-sm-6">
+    <li class=" nav-item"><a class="nav-link active" href="{{url_for('main.home')}}">Home</a></li>
+
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Apps</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{{url_for('main.times')}}">Shabbos Times</a>
+          <a class="dropdown-item" href="{{url_for('main.recipie')}}">Recipes</a>
+          <a class="dropdown-item" href="#">Mitzvos-Project</a>
+          <a class="dropdown-item" href="#">Python Apps</a>
+          <a class="dropdown-item" href="{{url_for('main.breaks')}}">Take a Break</a>
+        </div>
+      </li>
+    <li class="nav-item"><a class="nav-link" href="#" data-toggle="pill">Projects</a></li>
+    <li class="nav-item"><a class="nav-link" href="#" data-toggle="pill">Portfolio</a></li>
+  </ul>
+
+    </div>
+    </div>
+<!--JumboTron!-->
+{%block messages%}
+
+{% with messages = get_flashed_messages(with_categories=true)%}
+ {% if messages %}
+  {% for category, message in messages %}
+    <div class="alert alert-{{category}} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span></button>
+      {{message}}
+    </div>
+  {% endfor %}
+ {% endif %}
+{% endwith %}
+
+
+{%endblock%}
+
+{% block body %}
+<div class="jumbotron vertical-center">
+
+    <h1 class="display-3 text-primary">Welcome to Aaron Michelson's Space</h1>
+  <p class="lead">Exploring Material Science, Science Fiction, Projects and Recipies!</p>
+</div>
+
+
+    <!--Modal-->
+
+    <div class="modal fade" id="natureModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       <p id="bodyModal"></p>
+          <div id="countdown"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="stopClock()">Stop with the Reminders</button>
+        <button type="button" class="btn btn-primary" onclick="countdown( 'countdown', 5, 0 )" >Thanks! i'll take a break now, start the clock!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!--Cards-->
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top img-fluid" src="static/images/FCC%20cell.JPG" >
+
+                <div class="card-block text-xs-center">
+                    <h4 class="card-title">Crystallography</h4>
+                    <a href="https://drive.google.com/open?id=1jYS702ZGV9rUEfYjjYW7hvDZjyrfZA9QFLzi8jyAK34" class="btn btn-primary">Let's Get Started!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top img-fluid" src="static/images/fft.jpg" >
+
+                <div class="card-block text-xs-center">
+                    <h4 class="card-title ">T.E.M</h4>
+                    <a href="https://docs.google.com/presentation/d/1rCbYp4Sfm-KF-pJaXVJLR0yH8UuWFtCuUtx4bV2WFso/edit?usp=sharing" class="btn btn-primary">Let's Get Started!</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top img-fluid" src="static/images/Chemistry.jpg" >
+
+                <div class="card-block text-xs-center">
+                    <h4 class="card-title">Chemistry</h4>
+                    <a href="https://drive.google.com/open?id=1eviCDmB009KK1RO6Uk72ljfr8pZhvBkVw9tW9wIQrMs" class="btn btn-primary">Let's Get Started!</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <img class="card-img-top img-fluid" src="https://tc6ebq.dm2302.livefilestore.com/y3mc7oNEIGGiLTGwhI2Hb5rsYq3znEyE9hmOTyEOWCHiBf-9LNoDuUBPcFQbg3UrZpjezXnECezYY2vIHbJoOtSMdJqrIG2wg8zWKb6Loqag-wz-WTwdKrkKyaqGdNbj6qq2VA4OhkdQIX3SmdrwqbYUeb43E-HnqVKWncoYjl0dEU?width=2448&height=3264&cropmode=none"  >
+
+                <div class="card-block text-xs-center">
+                    <h4 class="card-title">Recipes</h4>
+                    <a href="{{url_for('main.recipie')}}" class="btn btn-primary">Let's Get Started!</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+{%endblock%}
+
+    <!-- jQuery first, then Bootstrap JS. Jqeuery and Other Stuff we need like "Tether" -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+
+    <!--fade alerts-->
+    <script>
+
+  $(document).ready (function(){
+   $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+               $(".alert").alert('close');
+                });
+            });
+     </script>
+{%block js%}
+<script>
+   $('#scrollParagraph').scrollspy({ target: '.navbar' });
+</script>
+<script src="static/javascript/take_breaks.js"></script>
+{%endblock%}
+    <!--Java Starts Here-->
+
+
+
+
+</body>
+</html>

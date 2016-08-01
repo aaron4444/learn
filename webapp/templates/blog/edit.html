@@ -1,0 +1,20 @@
+{%extends "base.html"%}
+{%block title%}Post Creation{% endblock%}
+
+{%block body%}
+<div class="row">
+  <h1 class="text-center"> Edit Post </h1>
+  <form method="POST" action="{{url_for('.edit_post',id=post.id)}}">
+    {{form.hidden_tag()}}
+
+    {% from '_formhelper.html' import render_form %}
+    {{render_form(form.title, value="post.title", class="form-control")}}
+    {{render_form(form.text, id="editor", class="form-control")}}
+  <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+{%endblock%}
+
+{%block js%}
+<script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
+<script> CKEDITOR.replace('editor');</script>
+{%endblock%}

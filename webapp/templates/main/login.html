@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+
+{%block body%}
+<div class="container-fluid">
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    {%if current_user == True %}
+      <h2> Please logout before logging into a different account </h2>
+      <a class="btn btn-primary" href="{{url_for('.logout')}}">Logout</a>
+    {%else%}
+        <h2>Login </h2>
+      <h6 class="text-muted"> Please log in to access features such as Recipies and Class Notes (I just like knowing who stopped by in the neighborhood) </h6>
+      </br>
+      <form class="form-group form-inline" method="POST" action="{{url_for('.login')}}" style="background-color:#EBEBEB; border-radius:5px; margin:20px;padding:20px;">
+        {{form.hidden_tag()}}
+        <h4>Login:</h4>
+        {% from "_formhelper.html" import render_form %}
+          {{render_form(form.username, class='form-control', placeholder="Username")}}
+          {{render_form(form.password, class='form-control', placeholder="Password")}}
+          {{render_form(form.remember, class='form-control')}}
+        <input class="btn btn-primary form-control" type="submit" value="Login">
+      </form>
+      </br>
+
+      <h4 class="text-center">Login/Register With Facebook</h4>
+      <a class="btn btn-primary" href="{{url_for('.facebook_login')}}">Login via Facebook</a>
+    </div>
+  </div>
+</div>
+{%endif%}
+{% endblock%}
+
+{% block js%}
+<script>
+  function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+  };
+</script>
+{%endblock%}

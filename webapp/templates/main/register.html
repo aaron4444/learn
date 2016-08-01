@@ -1,0 +1,23 @@
+
+{% extends "main/base.html" %}
+
+{%block body%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+  <h1> This is the Registration Form! </h1>
+<form method="POST" action="{{url_for('.register')}}">
+{{form.hidden_tag()}}
+<h3>Registration:</h3>
+{% from "_formhelper.html" import render_form %}
+  {{render_form(form.username)}}
+  {{render_form(form.password)}}
+  {{render_form(form.confirm)}}
+  {{render_form(form.recaptcha)}}
+  <input class="btn btn-primary" type="submit" value="Submit">
+</form>
+</div>
+</div>
+</div>
+
+{% endblock%}
