@@ -16,3 +16,9 @@ ADD . /opt/learn
 
 # Define default command.
 CMD ["python", "manage.py", "runserver"]
+
+# to build: $ docker build -t lassee/learn:latest .
+#$ docker run -d -p 5000:5000 flask-sample-one
+#dockerdocker run -t -d -p 5000:5000 --name learn lassee/learn bash
+
+# the -t is HUUUGE!
